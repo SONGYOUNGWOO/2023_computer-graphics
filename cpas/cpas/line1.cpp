@@ -18,28 +18,36 @@ void det(int x[3][3]) {
 		- x[0][1] * (x[1][0] * x[2][2] - x[1][2] * x[2][0])
 
 		+ x[0][2] * (x[1][0] * x[2][1] - x[1][1] * x[2][0]);
-	cout << dd;
+	cout << dd << endl;
 }
-
-int main() {
-	char ta[3];
-	int x[3][3];
-	int y[3][3];
-	int num = 0;
-
+void rand(int x[3][3]) {
 	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < 3; j++) {
 			x[i][j] = uid(dre);
 			cout << x[i][j];
 		}cout << endl;
 	}cout << endl;
-
-	for (int i = 0; i < 3; i++) {
-		for (int j = 0; j < 3; j++) {
-			y[i][j] = uid(dre);
-			cout << y[i][j];
-		}cout << endl;
-	}cout << endl;
+	cout << endl;
+}
+void Transposed(int x[3][3]) {
+	for (int j = 0; j < 3; j++)
+	{
+		for (int i = 0; i < 3; i++)
+		{
+			cout << x[i][j];
+		}
+		cout << endl;
+	}
+	cout << endl;
+}
+int main() {
+	char ta[3];
+	int x[3][3];
+	int y[3][3];
+	
+	//0,1,2 난수 배열
+	rand(x);
+	rand(y);
 
 	while (true) {
 
@@ -104,33 +112,18 @@ int main() {
 			//r: 행렬식의 값 (Determinant) void det 
 			if (strcmp(ta, "r") == 0) {
 				det(x);
-				cout << endl;
-
 				det(y);
-				cout << endl;
-		
 				continue;
 			}
 			//t: 전치 행렬(Transposed matrix)과 그 행렬식의 값을 입력한 2개의 행렬에 모두 적용한다.
 
 			if (strcmp(ta, "t") == 0) {
-				int r[3][3];
-				int i, j;
-				for (i = 0; i < 3; i++)
-				{
-					for (j = 0; j < 3; j++)
-					{
-						r[i][j] = x[j][i];
-						cout << r[i][j];
-					}
-					cout << endl;
-				}
-				cout << endl;
+				Transposed(x);
+				det(x);
+				Transposed(y);
+				det(y);
 				continue;
 			}
-
-
-
 
 		}//숫자면
 		else {//숫자 (1~9): 입력한 숫자를 행렬에 곱한다.
