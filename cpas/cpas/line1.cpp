@@ -4,6 +4,7 @@
 #include <cstring>
 
 using namespace std;
+using std::cout;
 unsigned seed = chrono::system_clock::now().time_since_epoch().count();
 
 default_random_engine dre(seed);		//랜던값엔진 seed 따라 고정된다 랜던값이
@@ -13,7 +14,7 @@ uniform_int_distribution<int> uid(0, 2); //랜덤값범위
 
 
 int main() {
-	char ta[30];
+	char ta[3];
 	int x[3][3];
 	int y[3][3];
 	int num = 0;
@@ -35,129 +36,135 @@ int main() {
 	while (true) {
 
 		cin >> ta;
+		int ee = ta[0];
 		// cin >> num;
+		//문자인지 숫자인지 구별
 
-		//m: 행렬의 곱셈
-		if (strcmp(ta, "m") == 109) {
-			int r[3][3];
-			int i, j;
-			for (i = 0; i < 3; i++)
-			{
-				for (j = 0; j < 3; j++)
+		if (isdigit(ta[0]) == 0) {
+
+			//m: 행렬의 곱셈
+			if (strcmp(ta, "m") == 109) {
+				int r[3][3];
+					int i, j;
+					for (i = 0; i < 3; i++)
+					{
+						for (j = 0; j < 3; j++)
+						{
+							r[i][j] = x[i][0] * y[0][j] + x[i][1] * y[1][j] + x[i][2] * y[2][j];
+								cout << r[i][j];
+						}
+						cout << endl;
+					}
+				cout << endl;
+				continue;
+			}
+
+			//a: 행렬의 덧셈
+
+			if (strcmp(ta, "a") == 0) {
+				int r[3][3];
+				int i, j;
+				for (i = 0; i < 3; i++)
 				{
-					r[i][j] = x[i][0] * y[0][j] + x[i][1] * y[1][j] + x[i][2] * y[2][j];
-					cout << r[i][j];
+					for (j = 0; j < 3; j++)
+					{
+						r[i][j] = x[i][j] + y[i][j];
+						cout << r[i][j];
+					}
+					cout << endl;
 				}
 				cout << endl;
+				continue;
 			}
-			cout << endl;
-			continue;
-		}
+			//d: 행렬의 뺄셈
 
-		//a: 행렬의 덧셈
-
-		if (strcmp(ta, "a") == 0) {
-			int r[3][3];
-			int i, j;
-			for (i = 0; i < 3; i++)
-			{
-				for (j = 0; j < 3; j++)
+			if (strcmp(ta, "d") == 0) {
+				int r[3][3];
+				int i, j;
+				for (i = 0; i < 3; i++)
 				{
-					r[i][j] = x[i][j] + y[i][j];
-					cout << r[i][j];
+					for (j = 0; j < 3; j++)
+					{
+						r[i][j] = x[i][j] - y[i][j];
+						cout << r[i][j];
+					}
+					cout << endl;
 				}
 				cout << endl;
+				continue;
 			}
-			cout << endl;
-			continue;
-		}
-		//d: 행렬의 뺄셈
+			//r: 행렬식의 값 (Determinant) 
 
-		if (strcmp(ta, "d") == 0) {
-			int r[3][3];
-			int i, j;
-			for (i = 0; i < 3; i++)
-			{
-				for (j = 0; j < 3; j++)
+			if (strcmp(ta, "r") == 0) {
+				int r[3][3];
+				int r2[3][3];
+				int tmp;
+				int i, j;
+				for (i = 0; i < 3; i++)
 				{
-					r[i][j] = x[i][j] - y[i][j];
-					cout << r[i][j];
+					for (j = 0; j < 3; j++)
+					{
+						tmp = x[i][j];
+						x[i][j] = x[j][i];
+						x[j][i] = tmp;
+
+						cout << r[i][j];
+					}
+					cout << endl;
 				}
 				cout << endl;
-			}
-			cout << endl;
-			continue;
-		}
-		//숫자 (1~9): 입력한 숫자를 행렬에 곱한다.
-		if (num < 10) {
-			int r[3][3];
-			int i, j;
-			for (i = 0; i < 3; i++)
-			{
-				for (j = 0; j < 3; j++)
+				for (i = 0; i < 3; i++)
 				{
-					r[i][j] = x[i][j] * num;
-					cout << r[i][j];
+					for (j = 0; j < 3; j++)
+					{
+						r2[i][j] = y[j][i];
+						cout << r2[i][j];
+					}
+					cout << endl;
 				}
 				cout << endl;
+
+				continue;
 			}
-			cout << endl;
-			continue;
+			//t: 전치 행렬(Transposed matrix)과 그 행렬식의 값을 입력한 2개의 행렬에 모두 적용한다.
 
-		}
-		//r: 행렬식의 값 (Determinant) 
-
-		if (strcmp(ta, "r") == 0) {
-			int r[3][3];
-			int r2[3][3];
-			int tmp;
-			int i, j;
-			for (i = 0; i < 3; i++)
-			{
-				for (j = 0; j < 3; j++)
+			if (strcmp(ta, "t") == 0) {
+				int r[3][3];
+				int i, j;
+				for (i = 0; i < 3; i++)
 				{
-					tmp = x[i][j];
-					x[i][j] = x[j][i];
-					x[j][i] = tmp;
-
-					cout << r[i][j];
+					for (j = 0; j < 3; j++)
+					{
+						r[i][j] = x[j][i];
+						cout << r[i][j];
+					}
+					cout << endl;
 				}
 				cout << endl;
+				continue;
 			}
-			cout << endl;
-			for (i = 0; i < 3; i++)
-			{
-				for (j = 0; j < 3; j++)
+
+
+
+
+		}//숫자면
+		else {//숫자 (1~9): 입력한 숫자를 행렬에 곱한다.
+			
+				int r[3][3];
+				int i, j;
+				for (i = 0; i < 3; i++)
 				{
-					r2[i][j] = y[j][i];
-					cout << r2[i][j];
+					for (j = 0; j < 3; j++)
+					{
+						r[i][j] = x[i][j] * ee;
+						cout << r[i][j];
+					}
+					cout << endl;
 				}
 				cout << endl;
+				continue;
+
 			}
-			cout << endl;
-
-			continue;
-		}
-		//t: 전치 행렬(Transposed matrix)과 그 행렬식의 값을 입력한 2개의 행렬에 모두 적용한다.
-
-		if (strcmp(ta, "t") == 0) {
-			int r[3][3];
-			int i, j;
-			for (i = 0; i < 3; i++)
-			{
-				for (j = 0; j < 3; j++)
-				{
-					r[i][j] = x[j][i];
-					cout << r[i][j];
-				}
-				cout << endl;
-			}
-			cout << endl;
-			continue;
-		}
-
-
-
 
 
 	}
