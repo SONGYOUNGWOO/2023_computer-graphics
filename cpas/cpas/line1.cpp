@@ -117,7 +117,7 @@ int main() {
 		if (isdigit(ta[0]) == 0) {
 
 			//m: Çà·ÄÀÇ °ö¼À
-			if (strcmp(ta, "m") == 109) {
+			if (strcmp(ta, "m") == 0) {
 				int r[3][3];
 					int i, j;
 					for (i = 0; i < 3; i++)
