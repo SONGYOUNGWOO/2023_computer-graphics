@@ -12,7 +12,7 @@ uniform_int_distribution<int> uid(0, 2); //랜덤값범위
 
 // cout printf
 // det 행렬식 값 
-void det(int x[3][3]) {
+void det_three (int x[3][3]) {
 	int dd= x[0][0] * (x[1][1] * x[2][2] - x[2][1] * x[1][2])
 
 		- x[0][1] * (x[1][0] * x[2][2] - x[1][2] * x[2][0])
@@ -20,13 +20,19 @@ void det(int x[3][3]) {
 		+ x[0][2] * (x[1][0] * x[2][1] - x[1][1] * x[2][0]);
 	cout << dd << endl;
 }
+void det_four(int x[3][3]) {
+
+
+
+}
+
 void rand(int x[3][3]) {
 	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < 3; j++) {
 			x[i][j] = uid(dre);
 			cout << x[i][j];
 		}cout << endl;
-	}cout << endl;
+	}
 	cout << endl;
 }
 void Transposed(int x[3][3]) {
@@ -40,6 +46,25 @@ void Transposed(int x[3][3]) {
 	}
 	cout << endl;
 }
+void H(int x[3][3]) {
+	int th[4][4];
+
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 4; j++) {
+			th[i][j] = x[i][j];
+			if ((i == 3) || (j == 3)) {
+				th[i][j] = 0;
+			}
+			if ((i == 3) && (j == 3)) {
+				th[i][j] = 1;
+			}
+			cout << th[i][j];
+		}cout << endl;
+		cout << endl;
+	}
+}
+
+
 int main() {
 	char ta[3];
 	int x[3][3];
@@ -111,18 +136,33 @@ int main() {
 			}
 			//r: 행렬식의 값 (Determinant) void det 
 			if (strcmp(ta, "r") == 0) {
-				det(x);
-				det(y);
+				det_three(x);
+				det_three(y);
 				continue;
 			}
 			//t: 전치 행렬(Transposed matrix)과 그 행렬식의 값을 입력한 2개의 행렬에 모두 적용한다.
-
 			if (strcmp(ta, "t") == 0) {
 				Transposed(x);
-				det(x);
+				det_three(x);
 				Transposed(y);
-				det(y);
+				det_three(y);
 				continue;
+			}
+			//h: 3X3 행렬을 4X4 행렬로 변환하고 행렬식의 값 (4행4열 행렬식 값) 출력
+			if (strcmp(ta, "h") == 0) {
+				H(x);
+				H(y);
+				continue;
+			}
+			//s: 행렬의 값을 새로 랜덤하게 설정한다.
+			if (strcmp(ta, "s") == 0) {
+				rand(x);
+				rand(y);
+				continue;
+			}
+			//q: 프로그램 종료
+			if (strcmp(ta, "q") == 0) {
+				return 0;
 			}
 
 		}//숫자면
