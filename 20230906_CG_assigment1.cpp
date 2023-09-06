@@ -17,27 +17,27 @@ int main() {
 	int x[3][3];
 	int y[3][3];
 	int num = 0;
+	
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			x[i][j] = uid(dre);
+			cout << x[i][j];
+		}cout << endl;
+	}cout << endl;
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			y[i][j] = uid(dre);
+			cout << x[i][j];
+		}cout << endl;
+	}cout << endl;
 
 	while (true) {
 
-		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 3; j++) {
-				x[i][j] = uid(dre);
-				cout << x[i][j];
-			}cout << endl;
-		}cout << endl;
-		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 3; j++) {
-				y[i][j] = uid(dre);
-				cout << x[i][j];
-			}cout << endl;
-		}cout << endl;
-
 		cin >> ta;
-		//cin >> num;
+		// cin >> num;
 
 		//m: 행렬의 곱셈
-		if (strcmp(ta, "m") == 0) {
+		if (strcmp(ta, "m") == 109) {
 			int r[3][3];
 			int i, j;
 			for (i = 0; i < 3; i++)
@@ -137,6 +137,28 @@ int main() {
 
 			continue;
 		}
+		//t: 전치 행렬(Transposed matrix)과 그 행렬식의 값을 입력한 2개의 행렬에 모두 적용한다.
+
+		if (strcmp(ta, "t") == 0) {
+			int r[3][3];
+			int i, j;
+			for (i = 0; i < 3; i++)
+			{
+				for (j = 0; j < 3; j++)
+				{
+					r[i][j] = x[j][i];
+					cout << r[i][j];
+				}
+				cout << endl;
+			}
+			cout << endl;
+			continue;
+		}
+
+
+
+
+
 	}
 
 }
