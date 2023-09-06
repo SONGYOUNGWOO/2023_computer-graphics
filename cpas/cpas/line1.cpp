@@ -36,7 +36,7 @@ int main() {
 	while (true) {
 
 		cin >> ta;
-		int ee = ta[0];
+		int ee = ta[0] - '0';
 		// cin >> num;
 		//문자인지 숫자인지 구별
 
