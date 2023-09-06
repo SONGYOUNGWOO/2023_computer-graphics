@@ -11,7 +11,15 @@ default_random_engine dre(seed);		//랜던값엔진 seed 따라 고정된다 랜던값이
 uniform_int_distribution<int> uid(0, 2); //랜덤값범위
 
 // cout printf
+// det 행렬식 값 
+void det(int x[3][3]) {
+	int dd= x[0][0] * (x[1][1] * x[2][2] - x[2][1] * x[1][2])
 
+		- x[0][1] * (x[1][0] * x[2][2] - x[1][2] * x[2][0])
+
+		+ x[0][2] * (x[1][0] * x[2][1] - x[1][1] * x[2][0]);
+	cout << dd;
+}
 
 int main() {
 	char ta[3];
@@ -93,37 +101,14 @@ int main() {
 				cout << endl;
 				continue;
 			}
-			//r: 행렬식의 값 (Determinant) 
-
+			//r: 행렬식의 값 (Determinant) void det 
 			if (strcmp(ta, "r") == 0) {
-				int r[3][3];
-				int r2[3][3];
-				int tmp;
-				int i, j;
-				for (i = 0; i < 3; i++)
-				{
-					for (j = 0; j < 3; j++)
-					{
-						tmp = x[i][j];
-						x[i][j] = x[j][i];
-						x[j][i] = tmp;
-
-						cout << r[i][j];
-					}
-					cout << endl;
-				}
-				cout << endl;
-				for (i = 0; i < 3; i++)
-				{
-					for (j = 0; j < 3; j++)
-					{
-						r2[i][j] = y[j][i];
-						cout << r2[i][j];
-					}
-					cout << endl;
-				}
+				det(x);
 				cout << endl;
 
+				det(y);
+				cout << endl;
+		
 				continue;
 			}
 			//t: 전치 행렬(Transposed matrix)과 그 행렬식의 값을 입력한 2개의 행렬에 모두 적용한다.
