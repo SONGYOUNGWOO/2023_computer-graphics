@@ -16,7 +16,7 @@ int main() {
 	char ta[30];
 	int x[3][3];
 	int y[3][3];
-	int num=0;
+	int num = 0;
 
 	while (true) {
 
@@ -45,14 +45,14 @@ int main() {
 				for (j = 0; j < 3; j++)
 				{
 					r[i][j] = x[i][0] * y[0][j] + x[i][1] * y[1][j] + x[i][2] * y[2][j];
-					cout << r[i] [j];
+					cout << r[i][j];
 				}
 				cout << endl;
 			}
 			cout << endl;
 			continue;
 		}
-		
+
 		//a: 행렬의 덧셈
 
 		if (strcmp(ta, "a") == 0) {
@@ -88,15 +88,15 @@ int main() {
 			continue;
 		}
 		//숫자 (1~9): 입력한 숫자를 행렬에 곱한다.
-		if (num<10) {
+		if (num < 10) {
 			int r[3][3];
 			int i, j;
 			for (i = 0; i < 3; i++)
 			{
 				for (j = 0; j < 3; j++)
 				{
-					r[i][j] = x[i][j] *num;
-					cout << r[i] [j];
+					r[i][j] = x[i][j] * num;
+					cout << r[i][j];
 				}
 				cout << endl;
 			}
@@ -138,7 +138,5 @@ int main() {
 			continue;
 		}
 	}
-	
+
 }
-
-
